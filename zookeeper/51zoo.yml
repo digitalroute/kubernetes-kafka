@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: zookeeper
-      storage: persistent-regional
+      storage: ephemeral
   serviceName: "zoo"
   replicas: 2
   updateStrategy:
@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         app: zookeeper
-        storage: persistent-regional
+        storage: ephemeral
       annotations:
     spec:
       terminationGracePeriodSeconds: 10
@@ -78,11 +78,5 @@ spec:
           name: zookeeper-config
       - name: config
         emptyDir: {}
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+      - name: data
+        emptyDir: {}
