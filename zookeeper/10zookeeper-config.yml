@@ -9,6 +9,7 @@ data:
     set -e
     set -x
 
+    umask 0002
     [ -d /var/lib/zookeeper/data ] || mkdir /var/lib/zookeeper/data
     [ -z "$ID_OFFSET" ] && ID_OFFSET=1
     export ZOOKEEPER_SERVER_ID=$((${HOSTNAME##*-} + $ID_OFFSET))
